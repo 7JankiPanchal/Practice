@@ -1,40 +1,29 @@
 pipeline {
-
-    agent { label 'ubuntu-agent' }
-
-    environment {
-        REGISTRY = '<REGISTRY>'       // Example: docker.io
-        REPO     = '<REPO>'           // Example: your-dockerhub-username
-        IMAGE    = "${env.REGISTRY}/${env.REPO}/sample-web:latest"
-    }
+    agent any
 
     stages {
-
-        stage('Checkout') {
+        stage('Clone Practice Repo') {
             steps {
-                checkout scm
+                git 'https://github.com/YOUR_GITHUB_USERNAME/Practice.git'
             }
         }
 
-        stage('Build Image') {
+        stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE .'
+                sh 'docker build -t YOUR_DOCKERHUB_USERNAME/practice-notes:latest .'
             }
         }
 
-        stage('Push Image') {
+        stage('Push Docker Image') {
             steps {
-                sh 'docker push $IMAGE'
+                sh 'docker push YOUR_DOCKERHUB_USERNAME/practice-notes:latest'
             }
         }
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh "sed -i 's|<REGISTRY>/<REPO>/sample-web:latest|'$IMAGE'|g' k8s/deployment.yaml || true"
-                sh 'kubectl apply -f k8s/deployment.yaml'
-                sh 'kubectl apply -f k8s/service-nodeport.yaml'
+                sh 'kubectl apply -f k8s.yaml'
             }
         }
     }
 }
-  
