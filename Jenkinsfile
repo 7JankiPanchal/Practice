@@ -5,13 +5,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t 7JankiPanchal/practice-notes:latest .'
+                sh 'docker build -t 7jankipanchal/practice-notes:latest .'
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                sh 'docker push 7JankiPanchal/practice-notes:latest'
+                sh 'docker push 7jankipanchal/practice-notes:latest'
             }
         }
 
