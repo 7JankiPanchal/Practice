@@ -2,21 +2,16 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Practice Repo') {
-            steps {
-                git 'https://github.com/7JankiPanchal/Practice.git'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t 7JankiPanchal/practice-notes:latest .'
+                sh 'docker build -t YOUR_DOCKERHUB_USERNAME/practice-notes:latest .'
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                sh 'docker push 7JankiPanchal/practice-notes:latest'
+                sh 'docker push YOUR_DOCKERHUB_USERNAME/practice-notes:latest'
             }
         }
 
