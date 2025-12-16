@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: practice-container
-        image: 7JankiPanchal/practice-notes:latest
+        image: 7jankipanchal/practice-notes:latest
         ports:
         - containerPort: 5000
 ---
