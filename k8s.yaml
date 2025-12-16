@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: practice-container
-        image: YOUR_DOCKERHUB_USERNAME/practice-notes:latest
+        image: 7JankiPanchal/practice-notes:latest
         ports:
         - containerPort: 5000
 ---
